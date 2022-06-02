@@ -9,6 +9,6 @@ document.addEventListener("DOMContentLoaded",x =>{
   const NEWS = document.querySelector(".header-news");
 
   NEWS.addEventListener("click", x =>{
-    history.pushState("", "", "/news/index.html");
+    history.replaceState("", "", "news/index.html");
   });
 });
