@@ -15,6 +15,7 @@ body{
 }
 
 .header-news{
+  text-decoration: none;
   border: none;
   margin-left: 3%;
   padding-left: 0.5%;
