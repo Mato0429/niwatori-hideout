@@ -41,7 +41,7 @@ body{
   position: relative;
 }
 
-#text{
+#password{
   position: absolute;
   z-index: 1; /*.password_stringよりも上に配置*/
   height: 100%;
@@ -79,7 +79,7 @@ body{
 }
 
 /*アニメーション*/
-#text:focus + .password_string{
+#password:focus + .password_string{
   margin-top: 0px;
   color: hsl(0, 0%, 100%);
   font-size: 10px;
