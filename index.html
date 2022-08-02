@@ -1,3 +1,5 @@
+<!-- サイトを参考にしました https://blog.hgrs.me/20200406030144 -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,9 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Password</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="padlock.svg" type="image/svg+xml">
     <script type="text/javascript" src="sha256.js"></script>
   </head>
   <body>
@@ -21,7 +21,7 @@
         sha.update(text);
         return sha.getHash('HEX');
       }
-      function auth(password) {
+      function cert(password) {
         const url = hash(password);
         const xhr = new XMLHttpRequest();
         xhr.open('GET', url);
@@ -32,19 +32,19 @@
           } else {
             const message = document.getElementById('message');
             const input = document.getElementById('password');
-            message.innerHTML = 'Wrong password! Try again.';
+            message.innerHTML = 'Wrong password.';
             input.value = '';
           }
         };
         xhr.onerror = function () {
           const message = document.getElementById('message');
-          message.innerHTML = 'Sorry, ERROR !';
+          message.innerHTML = 'Error.';
         };
       }
       const form = document.getElementById('form');
       form.addEventListener('submit', function (event) {
         const password = document.getElementById('password').value;
-        auth(password);
+        cert(password);
         event.preventDefault();
       });
     </script>
