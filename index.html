@@ -1,0 +1,59 @@
+<!-- サイトを参考にしました https://blog.hgrs.me/20200406030144 -->
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Password</title>
+    <link rel="stylesheet" media="screen and (max-width:768px)" href="sp_style.css">
+    <link rel="stylesheet" media="screen and (min-width:769px)" href="pc_style.css">
+    <script type="text/javascript" src="sha256.js"></script>
+  </head>
+  <body>
+    <form id="form">
+      <p class="enter" id="message">Please enter your password</p>
+      <div class="password_box">
+        <div class="password_inner">
+          <input id="password" type="password" placeholder="">
+          <div class="password_string">パスワードを入力</div>
+        </div>
+        <i class="fas fa-eye-slash"></i>
+     </div>
+    </form>
+    <script>
+      function hash(text) {
+        const sha = new jsSHA('SHA-256', 'TEXT');
+        sha.update(text);
+        return sha.getHash('HEX');
+      }
+      function cert(password) {
+        const url = hash(password);
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.send();
+        xhr.onload = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            window.location = url;
+          } else {
+            const message = document.getElementById('message');
+            const input = document.getElementById('password');
+            message.innerHTML = 'Wrong password.';
+            input.value = '';
+          }
+        };
+        xhr.onerror = function () {
+          const message = document.getElementById('message');
+          message.innerHTML = 'Wrong password.';
+        };
+      }
+      const form = document.getElementById('form');
+      form.addEventListener('submit', function (event) {
+        const password = document.getElementById('password').value;
+        cert(password);
+        event.preventDefault();
+      });
+    </script>
+  </body>
+</html>
