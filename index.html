@@ -27,6 +27,7 @@
         sha.update(text);
         return sha.getHash('HEX');
       }
+      
       function cert(password) {
         const url = hash(password);
         const xhr = new XMLHttpRequest();
@@ -36,7 +37,7 @@
           if (xhr.readyState === 4 && xhr.status === 200) {
             window.location = url;
           } else {
-            const message = document.getElementById('message');
+            const message = document.getElementById('enter');
             const input = document.getElementById('password');
             message.innerHTML = 'Wrong password.';
             input.value = '';
@@ -47,6 +48,7 @@
           message.innerHTML = 'Wrong password.';
         };
       }
+      
       const form = document.getElementById('form');
       form.addEventListener('submit', function (event) {
         const password = document.getElementById('password').value;
