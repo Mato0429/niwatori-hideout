@@ -66,7 +66,7 @@ body{
   font-size: 16px;
   line-height: 50px; /*文字列を縦方向にmiddleに見せるため*/
   background-color: transparent;
-  color: white;
+  color: lightgray;
   box-sizing: border-box; /*横幅の解釈をpadding, borderまでとする*/
   transition: all 0.2s;
   -webkit-transition: all 0.2s;
